@@ -6,6 +6,8 @@
 int main(int argc, char *argv[]){
 	int size, rank;
 	int buf = 0;//Пересылаемое сообщение
+	int sendbuf = 1;
+	int recvbuf = 0;
 	double average_time, sum_time, start_time, end_time, error_time, array_sum, time = 0;
 	MPI_Status Status; 
 
@@ -22,7 +24,7 @@ int main(int argc, char *argv[]){
 		MPI_Barrier(MPI_COMM_WORLD);
 			start_time = MPI_Wtime();
 
-		MPI_Bcast(&buf, 1, MPI_INT, 0, MPI_COMM_WORLD);
+		MPI_Reduce(&sendbuf, &recvbuf, 1, MPI_INT, MPI_MAX, 0, MPI_COMM_WORLD);
 
 		MPI_Barrier(MPI_COMM_WORLD);
 			end_time = MPI_Wtime();
@@ -43,7 +45,8 @@ int main(int argc, char *argv[]){
 
 	error_time = sqrt(array_sum/(N*(N-1)));
 
-	printf("[RANK %d] Wtick %.10lf\n", rank, MPI_Wtick());
+	printf("[RANK %d] Av_Time  = %.10lf\n", rank, average_time);
+	printf("[RANK %d] Wtick    = %.10lf\n", rank, MPI_Wtick());
 	printf("[RANK %d] av_error = %.10lf\n", rank, error_time );
 
 	MPI_Finalize();
