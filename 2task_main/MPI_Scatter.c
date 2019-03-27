@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
 		MPI_Barrier(MPI_COMM_WORLD);
 			start_time = MPI_Wtime();
 
+		//Разбивает вектор и передает каждому его кусок
 		MPI_Scatter(&sbuf, 1, MPI_INT, &recvbuf, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
 		MPI_Barrier(MPI_COMM_WORLD);

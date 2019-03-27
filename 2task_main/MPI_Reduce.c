@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
 		MPI_Barrier(MPI_COMM_WORLD);
 			start_time = MPI_Wtime();
 
+		//Рассылает всем вектор с данными и выполняет над ними команду
 		MPI_Reduce(&sendbuf, &recvbuf, 1, MPI_INT, MPI_MAX, 0, MPI_COMM_WORLD);
 
 		MPI_Barrier(MPI_COMM_WORLD);

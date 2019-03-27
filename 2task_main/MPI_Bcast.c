@@ -22,6 +22,7 @@ int main(int argc, char *argv[]){
 		MPI_Barrier(MPI_COMM_WORLD);
 			start_time = MPI_Wtime();
 
+		//Рассылает всем данные
 		MPI_Bcast(&buf, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
 		MPI_Barrier(MPI_COMM_WORLD);

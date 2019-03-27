@@ -25,6 +25,7 @@ int main(int argc, char *argv[]){
 		MPI_Barrier(MPI_COMM_WORLD);
 			start_time = MPI_Wtime();
 
+		//Собирает данные со всех и склеивает в 1 вектор.
 		MPI_Gather(&sbuf, 1, MPI_INT, &recvbuf, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
 		MPI_Barrier(MPI_COMM_WORLD);
